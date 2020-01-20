@@ -1,0 +1,20 @@
+git:
+  depth: 5
+language: node_js
+node_js:
+  - "lts/*"
+  - "node"
+script:
+  - npm run test:cc-report
+env:
+  global:
+    # if modify the secure, see ticket #448
+    secure: "L64Dvf/s6L0sB4OzbXMVxxd1nUx0dV2xTcpYIO3cpabBpFnMNbykwKH6PHgEOD5CSQ2r7kiYVci61mT1mCcbEp0zwqFgi3XVYQJlb3sF5YY6aZSCvQ15IwiRI1HIIbM+3kVtUZbgaRxvAJzMNPijx0E+EDi/F00jKZJWQfYvpFQvWhb7tm24qxStUeFHxSLMKWQk5NXC7iwNAhiBJ/H+JHjByvMrK5E3QVj4nbgPBB38C6F0OsQ7LyL2AfEojFngSrbomNq1WFnrr5YRL1CeQmXXLcH+xvz11sn2KWB158B/B9QD+RaZebfHilVeK04YM0qUFbfG6UC2VklZ5Bcf9f8Rw+SRQlO5/QdX3V6F0gOw2irlB35QZ2e5HcBjIm2wlTuGheJ1m4kHVToTD/Qa6ablWUy6TSKOoipUBXwQi95HhnKN+paBS/HQhYDRqKeWydwDYOCix9L5H0jEvDkoNBlxvcZF/kY9gvxh3+luY2mnc+pHVnBe+lV2b6kOcIDOTH/l7cO1bpccoq3BCG71aBehvtbv6dEWiFkivtjPzA65zPPRZ2JfMwRpD+oH13V1EF+rCA5Glj4AATpvaHLDwDxcCDo5rDX58r+YI/j1cgRRzeQU+V0s6uQtwC7FbIpfkaX2yYfdZjqFhXTsOdVI9liwDciSQ1UdXH9ibE6zWhE="
+
+jobs:
+  include:
+    - stage: release
+      if: branch = master
+      node_js: "node"
+      script:
+        - ./post-commit.sh || git push https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git --tags
