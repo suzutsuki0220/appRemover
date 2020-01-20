@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="javascripts/app_remover.js"></script>
+    <script type="text/javascript" src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="node_modules/bulma/css/bulma.min.css">
+    <title></title>
+</head>
+<body>
+<nav class="navbar is-black" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <div class="navbar-item"><i class="fas fa-trash-alt"></i>クソアプリ削除ツール<i class="fas fa-trash-alt"></i></div>
+    </div>
+    <div id="navbar_area" class="navbar-menu">
+        <div class="navbar-start">
+        </div>
+        <div class="navbar-end">
+        </div>
+    </div>
+</nav>
+
+<div class="control">
+    <button class="button" onClick="runCommand()"><i class="fab fa-accusoft"></i>実行</button>
+    <textarea class="textarea has-fixed-size" id="resultArea" rows="20" placeholder="処理結果がここに出力されます" readonly></textarea>
+</div>
+
+<script async id="__bs_script__" src="http://localhost:3000/browser-sync/browser-sync-client.js?v=2.26.7"></script>
+</body>
+</html>
