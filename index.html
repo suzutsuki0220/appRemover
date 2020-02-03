@@ -1,31 +1,60 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Script-Type" content="text/javascript">
-    <meta http-equiv="Content-Style-Type" content="text/css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="javascripts/app_remover.js"></script>
-    <script type="text/javascript" src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="node_modules/bulma/css/bulma.min.css">
-    <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Script-Type" content="text/javascript">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="javascripts/app_remover.js"></script>
+  <script type="text/javascript" src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/app_remover.css">
+  <link rel="stylesheet" type="text/css" href="node_modules/bulma/css/bulma.min.css">
+  <title></title>
 </head>
 <body>
-<nav class="navbar is-black" role="navigation" aria-label="main navigation">
+<div class="wrap">
+  <nav class="navbar is-info" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <div class="navbar-item"><i class="fas fa-trash-alt"></i>クソアプリ削除ツール<i class="fas fa-trash-alt"></i></div>
+      <div class="navbar-item"><i class="fas fa-laptop-code"></i>環境構築ツール</div>
     </div>
     <div id="navbar_area" class="navbar-menu">
-        <div class="navbar-start">
-        </div>
-        <div class="navbar-end">
-        </div>
+      <div class="navbar-start">
+      </div>
+      <div class="navbar-end">
+      </div>
     </div>
-</nav>
+  </nav>
 
-<div class="control">
-    <button class="button" onClick="runCommand()"><i class="fab fa-accusoft"></i>実行</button>
-    <textarea class="textarea has-fixed-size" id="resultArea" rows="20" placeholder="処理結果がここに出力されます" readonly></textarea>
+  <div class="columns is-gapless">
+    <div class="column">
+      <h1>コマンドリスト</h1>
+      <div class="columns is-gapless" style="height: 280px; overflow: auto">
+        <table class="table is-bordered is-striped is-narrow is-fullwidth">
+          <tbody>
+            <tr>
+              <td>aaaaaa</td>
+            </tr>
+            <tr>
+              <td>bbbbbb</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="columns is-gapless">
+    <div class="column">
+      <div class="control">
+        <button class="button is-link is-fullwidth" onClick="runCommand()">
+          <i class="far fa-paper-plane"></i>&nbsp;実行
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="box">
+    実行結果
+    <textarea class="textarea has-fixed-size" id="resultArea" placeholder="処理結果がここに出力されます" readonly></textarea>
+  </div>
 </div>
 
 <script async id="__bs_script__" src="http://localhost:3000/browser-sync/browser-sync-client.js?v=2.26.7"></script>

@@ -1,0 +1,18 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.box {
+    flex: 1 1 100%;
+}
+
+#resultArea {
+    height: 95%;
+}
