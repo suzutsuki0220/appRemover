@@ -1,21 +1,16 @@
-const command = require('./javascripts/command.js');
 const dialog = require('./javascripts/dialog.js');
+const batchlist = require('./javascripts/batchlist.js');
 
 function openFileDialog() {
     dialog.openFileDialog(
-        function(result) {
-            console.log(result);
+        function(filepath) {
+            batchlist.load(filepath);
         }, function(err) {
-            consoloe.log(err);
+            console.log(err);
         }
     );
 }
 
 function runCommand() {
-    command.exec(
-        'ls -la ./',
-        function(data) {
-            document.getElementById('resultArea').innerHTML = data;
-        }
-    );
+    batchlist.exec();
 }

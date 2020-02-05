@@ -9,7 +9,9 @@ function openFileDialog(onSuccess, onError) {
             {name: 'batch', extensions: ['list'] }
         ]
     }).then(result => {
-        onSuccess(result);
+        if (result && result.canceled === false) {
+            onSuccess(result.filePaths[0]);
+        }
     }).catch(err => {
         onError(err);
     })
