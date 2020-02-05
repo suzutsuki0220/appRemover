@@ -34,6 +34,15 @@ const menu_template = [
     {
         label: app.name,
         submenu: [
+            {
+                label: 'Open batch list',
+                accelerator: 'Command+O',
+                click: function(item, focusedWindow) {
+                    if (focusedWindow) {
+                        focusedWindow.webContents.executeJavaScript('openFileDialog()');
+                    }
+                }
+            },
             //{role: 'about'},
             {
                 role: 'close',
