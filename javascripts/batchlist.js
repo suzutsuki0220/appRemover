@@ -1,10 +1,13 @@
 const fs = require('fs');
+const bulmaRender = require('html-render')('bulma');
 const command = require('./command.js');
 
 let commands = new Array();
+let results  = new Array();
 
 function initialize() {
     commands = [];
+    results  = [];
 }
 
 function makeColumn(html) {
@@ -12,10 +15,6 @@ function makeColumn(html) {
     td.innerHTML = html;
 
     return td;
-}
-
-function statusIcon() {
-    return '<span class="icon is-medium has-text-success"><i class="fas fa-check"></i></span>';
 }
 
 function setCommandList() {
@@ -27,11 +26,24 @@ function setCommandList() {
         const tr = document.createElement('tr');
         tr.appendChild(makeColumn(i + 1));
         tr.appendChild(makeColumn(commands[i]));
-        tr.appendChild(makeColumn(statusIcon()));
+
+        const ret = {
+            icon: makeColumn("&nbsp;&nbsp;"),
+            output: ""
+        }
+        results.push(ret);
+
+        tr.appendChild(ret.icon);
 
         tbody.appendChild(tr);
     }
     commandList.appendChild(tbody);
+}
+
+function setResult(seq, icon, message) {
+    results[seq].icon.innerHTML = icon;
+    results[seq].output = message;
+    document.getElementById('resultArea').innerHTML = message;
 }
 
 function execCommand(seq) {
@@ -39,10 +51,14 @@ function execCommand(seq) {
         return;
     }
 
+    results[seq].icon.innerHTML = bulmaRender.statusIcon.loading;
     command.exec(
         commands[seq],
         function(data) {
-            document.getElementById('resultArea').innerHTML = data;
+            setResult(seq, bulmaRender.statusIcon.done, data);
+            execCommand(seq + 1);
+        }, function(code, stderr) {
+            setResult(seq, bulmaRender.statusIcon.error, `code: ${code}\n` + stderr);
             execCommand(seq + 1);
         }
     );
