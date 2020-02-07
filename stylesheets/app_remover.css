@@ -3,6 +3,10 @@ html, body {
     padding: 0;
 }
 
+table#command_list {
+    table-layout: fixed;
+}
+
 .wrap {
     display: flex;
     flex-direction: column;

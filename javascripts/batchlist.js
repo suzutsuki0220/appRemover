@@ -10,9 +10,13 @@ function initialize() {
     results  = [];
 }
 
-function makeColumn(html) {
+function makeColumn(html, width) {
     const td = document.createElement('td');
     td.innerHTML = html;
+
+    if (width) {
+        td.style.width = width;
+    }
 
     return td;
 }
@@ -24,11 +28,11 @@ function setCommandList() {
     commandList.innerHTML = '';
     for (let i=0; i<commands.length; i++) {
         const tr = document.createElement('tr');
-        tr.appendChild(makeColumn(i + 1));
+        tr.appendChild(makeColumn(i + 1, "1.8em"));
         tr.appendChild(makeColumn(commands[i]));
 
         const ret = {
-            icon: makeColumn("&nbsp;&nbsp;"),
+            icon: makeColumn("&nbsp;&nbsp;", "3em"),
             output: ""
         }
         results.push(ret);
