@@ -21,6 +21,21 @@ function makeColumn(html, width) {
     return td;
 }
 
+function outputResult(seq) {
+    document.getElementById('resultArea').innerHTML = results[seq].output;
+}
+
+function setClickable(elem, onClick) {
+    elem.onclick = onClick;
+    elem.style.cursor = 'pointer';
+    elem.onmouseover = function() {
+        elem.classList.add('hover');
+    };
+    elem.onmouseout = function() {
+        elem.classList.remove('hover');
+    };
+}
+
 function setCommandList() {
     const commandList = document.getElementById('command_list');
     const tbody = document.createElement('tbody');
@@ -30,6 +45,13 @@ function setCommandList() {
         const tr = document.createElement('tr');
         tr.appendChild(makeColumn(i + 1, "1.8em"));
         tr.appendChild(makeColumn(commands[i]));
+        setClickable(tr, function() {
+            for (let j=0; j<commandList.rows.length; j++) {
+                commandList.rows[j].classList.remove('selected');
+            }
+            tr.classList.add('selected');
+            outputResult(i);
+        });
 
         const ret = {
             icon: makeColumn("&nbsp;&nbsp;", "3em"),
@@ -47,7 +69,7 @@ function setCommandList() {
 function setResult(seq, icon, message) {
     results[seq].icon.innerHTML = icon;
     results[seq].output = message;
-    document.getElementById('resultArea').innerHTML = message;
+    outputResult(seq);
 }
 
 function execCommand(seq) {

@@ -7,6 +7,14 @@ table#command_list {
     table-layout: fixed;
 }
 
+.hover td {
+    background-color: lightgray;
+}
+
+.selected td {
+    background-color: #6699ff;
+}
+
 .wrap {
     display: flex;
     flex-direction: column;
