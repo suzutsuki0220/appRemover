@@ -1,4 +1,5 @@
 const {exec} = require('child_process');
+const japanese = require('./japanese.js');
 
 function errorWork(code, stderr) {
     console.log(stderr);
@@ -17,11 +18,11 @@ module.exports.exec = function(command, onSuccess, onError = errorWork) {
 
     process.stdout.on('data', (data) => {
         //console.log('stdout >> ' + data);
-        stdout = data;
+        stdout = japanese.toUTF8(data);
     });
 
     process.stderr.on('data', (data) => {
-        stderr = data;
+        stderr = japanese.toUTF8(data);
     });
 
     process.on('close', (code) => {
