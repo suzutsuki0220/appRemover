@@ -6,8 +6,13 @@ function errorWork(code, stderr) {
     console.error(`process exited with code ${code}`);
 }
 
+function isWindows() {
+    return process.platform === 'win32';
+}
+
 module.exports.exec = function(command, onSuccess, onError = errorWork) {
-    const process = exec(command);
+    const encoding = isWindows() ? 'Shift-JIS' : 'utf-8';
+    const process = exec(command, {encoding: encoding});
 
     let stdout = "";
     let stderr = "";
